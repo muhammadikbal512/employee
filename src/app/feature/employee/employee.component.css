@@ -1,0 +1,53 @@
+.employee-main-container {
+  background: var(--main-bg-color);
+  padding: 15px 20px 15px 20px;
+
+  @apply se-flex se-flex-col se-gap-[15px]
+      se-w-full se-h-full
+      se-overflow-auto;
+}
+
+.first-container {
+  @apply se-w-full;
+}
+
+.header-table {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.table-func-container-2 {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-btn {
+  height: fit-content;
+  padding: 0.4rem;
+}
+
+.detail-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+}
+
+.detail-text {
+  font-weight: 800;
+}
+
+.sc-reset-button {
+  @apply se-w-full se-text-[.8rem];
+}
+
+::ng-deep .p-column-filter-menu-button, .p-column-filter-clear-button {
+  width: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}

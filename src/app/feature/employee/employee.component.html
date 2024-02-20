@@ -1,0 +1,255 @@
+<div class="employee-main-container">
+  <div class="first-container">
+    <p-card class="search-card">
+      <div class="search-container">
+        <div class="se-flex se-gap-4 se-flex-col">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              class="se-w-full"
+              type="text"
+              (input)="applyFilterGlobal($event)"
+              placeholder="Search"
+            />
+          </span>
+          <button
+            mat-raised-button
+            color="warning"
+            class="sc-reset-button"
+            (click)="onReset()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <div class="first-container">
+    <p-card class="table-card">
+      <p-table
+        #dt
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [resizableColumns]="true"
+        [value]="employeeItems"
+        selectionMode="single"
+        [paginator]="true"
+        [exportHeader]="'customExportHeader'"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[15, 25, 50, 100, 250, 500]"
+        [scrollable]="true"
+        [rows]="10"
+        [(selection)]="selectedEmployeeItem"
+        dataKey="id"
+        [globalFilterFields]="[
+          'username',
+          'firstName',
+          'lastName',
+          'email',
+          'birthDate',
+          'basicSalary',
+          'status',
+          'group',
+          'description'
+        ]"
+        class="employee-table"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+      >
+        <ng-template pTemplate="caption">
+          <div class="header-table">
+            <span style="font-size: 0.8rem; padding-left: 1rem"
+              >EMPLOYEE Data</span
+            >
+            <div class="table-func-container-2">
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-layer-plus"
+                (click)="onClickedAddEmployee()"
+                matTooltip="Add Add Employee"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                [disabled]="selectedEmployeeItem == undefined"
+                icon="bx bx-edit"
+                (click)="onClickedEditEmployee()"
+                matTooltip="Edit Update Employee"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                [disabled]="selectedEmployeeItem == undefined"
+                icon="bx bx-trash-alt"
+                (click)="onClickedDeleteEmployee()"
+                matTooltip="Delete Delete Employee"
+                [matTooltipPosition]="'below'"
+                class="p-button-danger"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Username
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Firstname
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Lastname
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Email
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Date of Birth
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Basic Salary
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Status
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Group
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="filter-container">
+                Description
+                <p-columnFilter
+                  class="column-filter"
+                  type="text"
+                  field="username"
+                  display="menu"
+                ></p-columnFilter>
+              </div>
+            </th>
+            <th pResizableColumn></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-i="rowIndex">
+          <tr [pSelectableRow]="product">
+            <td class="row-width">
+              {{ product.username }}
+            </td>
+            <td class="row-width">
+              {{ product.firstName }}
+            </td>
+            <td class="row-width">
+              {{ product.lastName }}
+            </td>
+            <td class="row-width">
+              {{ product.email }}
+            </td>
+            <td class="row-width">
+              {{ product.birthDate }}
+            </td>
+            <td class="row-width">
+              {{ product.basicSalary | currency : "IDR" : "symbol" : "1.0-0" }}
+            </td>
+            <td class="row-width">
+              {{ product.status }}
+            </td>
+            <td class="row-width">
+              {{ product.group }}
+            </td>
+            <td class="row-width">
+              {{ product.description }}
+            </td>
+            <td class="row-width">
+              <button
+                mat-raised-button
+                class="detail-btn"
+                (click)="onDetailEmployee(product.id)"
+                matTooltip="View Details Data"
+                [matTooltipPosition]="'below'"
+                [disabled]="selectedEmployeeItem == undefined"
+              >
+                <div class="detail-container">
+                  <span class="detail-text">Details</span>
+                </div>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr style="">
+            <td colspan="10">There is no employee.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
